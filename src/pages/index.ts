@@ -1,0 +1,7 @@
+export {default as SignUp} from "./signup"
+export {default as Profile} from "./profile"
+export {default as Post} from "./post"
+export {default as MyPhotos} from "./myPhotos"
+export {default as Home } from "./home"
+export {default as Login } from "./login"
+export {default as Error } from "./error"
