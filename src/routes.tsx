@@ -11,7 +11,7 @@ export const router = createBrowserRouter(
     <>
       <Route  element={<ProtectedRoutes  />}>
       <Route path="/" element={<Home/>} errorElement={<Error/>}/>
-      <Route path="/Photos" element={<MyPhotos/>} errorElement={<Error/>}/>
+      <Route path="myPhotos" element={<MyPhotos/>} errorElement={<Error/>}/>
       <Route path="Post" element={<Post/>} errorElement={<Error/>}/>
       <Route path="Profile" element={<Profile/>} errorElement={<Error/>}/>
       </Route>

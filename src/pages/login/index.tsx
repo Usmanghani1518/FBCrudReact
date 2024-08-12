@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FaGoogle } from "react-icons/fa";
-import  React, { useState ,MouseEvent } from "react";
+import  React, { useState , FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IUserLogIn } from "@/Types";
 import { useUserAuth } from "@/context/userAuthContext";
@@ -33,17 +33,18 @@ const Login: React.FC<ILoginProps> = () => {
 
 const  handleGoogleSignIn = async ()=>{
   try {
-    googleSignIn()
-    navigate("/")
+    googleSignIn().then(()=>{
+      navigate("/")
+    })
   } catch (error) {
     console.log("error in google log in ",error)
   }
 }
 
-const handleSubmit = (e:MouseEvent<HTMLFormElement>)=>{
+const handleSubmit = (e:FormEvent<HTMLFormElement>)=>{
   e.preventDefault();
   try {
-    console.log("77&&&&&&&&&&&&&&&&&&&&")
+  
     logIn(userInfo.email,userInfo.password);
     navigate("/")
   } catch (error) {
@@ -56,7 +57,7 @@ const handleSubmit = (e:MouseEvent<HTMLFormElement>)=>{
     <div className="flex justify-center items-center w-full">
 <div className="max-w-sm rounded-xl border bg-card text-card-foreground shadow-sm">
   <Card>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e)=>handleSubmit(e)}>
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl text-center mb-4">
           PhotoGram

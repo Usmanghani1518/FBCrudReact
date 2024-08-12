@@ -2,6 +2,7 @@ import React  from "react";
 import { Location, Navigate, Outlet, useLocation } from "react-router-dom";
 import {useAuthState} from 'react-firebase-hooks/auth'
 import { getAuth } from "firebase/auth";
+import { Layout } from "@/components/layout";
 interface IProtectedRoutes {
  
 }
@@ -17,9 +18,12 @@ const ProtectedRoutes: React.FC<IProtectedRoutes> = () => {
       <div>....Loading</div>
     )
   }
+  
 
   return user ? (
-    <Outlet />
+    <Layout>
+      <Outlet />
+    </Layout>
   ) : (
     <Navigate to="/login" state={{ from: location }} />
   );
