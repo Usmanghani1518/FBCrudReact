@@ -18,8 +18,12 @@ interface IUserLogIn {
 }
 
 interface ILayoutProps{
-  
+  Children:ReactNode
 }
 interface ISiderBarProps{
+
+}
+
+interface IUserList{
 
 }
