@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-
 import {
   Card,
   CardContent,
@@ -12,8 +11,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FaGoogle } from "react-icons/fa";
 import  React, { useState ,MouseEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IUserSignUp } from "@/Types";
+import { useUserAuth } from "@/context/userAuthContext";
 
 interface ISignUpProps {}
 
@@ -25,17 +25,35 @@ const initialvalue:IUserSignUp = {
   confirmPassword:''
 }
 
+
 const SignUp: React.FC<ISignUpProps> = () => {
-  const [userInfo,setUserInfo]= useState<IUserSignUp>(initialvalue)
+  const [userInfo,setUserInfo]= useState<IUserSignUp>(initialvalue);
+  const {googleSignIn,signUp} = useUserAuth()
+  const navigate = useNavigate();
 
   const handleSubmit =(e:MouseEvent<HTMLFormElement>)=>{
     e.preventDefault()
     try {
       console.log('*************',userInfo)
+      signUp(userInfo.email,userInfo.password)
+      navigate("/")
     } catch (error) {
-      console.log('&&&&&&&&&&&&&&&77',userInfo)
+      console.log('&&&&&&&&&&&&&&&77 error in  email signUp',error)
     }
     
+    }
+
+    const handleGoogleSignIn = async (/* e:MouseEvent<HTMLFormElement> */)=>{
+    //  e.preventDefault();
+     try {
+       await googleSignIn();
+        navigate("/")
+       
+     } catch (error) {
+      console.log("there is an error in google signUP",error)
+     }
+
+
     }
 
   return (
@@ -55,7 +73,7 @@ const SignUp: React.FC<ISignUpProps> = () => {
           </CardHeader>
           <CardContent className="grid gap-4">
             <div className="grid">
-              <Button variant="outline" /* onClick={handleGoogleSignIn} */>
+              <Button  variant="outline" type="button" onClick={()=>handleGoogleSignIn()}>
                 <FaGoogle className="mr-2 h-4 w-4" />
                 Google
               </Button>

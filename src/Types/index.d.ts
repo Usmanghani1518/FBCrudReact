@@ -16,3 +16,10 @@ interface IUserLogIn {
   email: string;
   password: string;
 }
+
+interface ILayoutProps{
+  
+}
+interface ISiderBarProps{
+
+}
