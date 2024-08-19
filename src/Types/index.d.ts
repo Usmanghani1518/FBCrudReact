@@ -1,3 +1,4 @@
+import { OutputFileEntry  } from "@uploadcare/react-uploader";
 import React from "react";
 
 interface IuserInup {}
@@ -26,4 +27,27 @@ interface ISiderBarProps{
 
 interface IUserList{
 
+}
+
+interface IPost{
+  caption:string,
+  photo:PhotoMeta[],
+  likes:number,
+  userLikes:[],
+  userId:string | undefined ,
+  date:Date
+}
+
+interface PhotoMeta {
+  cdnUrl:string,
+  uuid:string
+}
+
+interface FileEntry{
+  files:OutputFileEntry[],
+
+}
+
+interface IFileUpload{
+  
 }
